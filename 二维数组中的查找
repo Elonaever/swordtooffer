@@ -2,7 +2,7 @@ class Solution {
 public:
 bool  Find(int target, vector<vector<int> > array) {
 	int n = array[0].size()-1 ;
-	for(int m = 0, ;m<=array.size()-1&&n>=0;){
+	for(int m = 0;m<=array.size()-1&&n>=0;){
 		if(array[m][n] == target){
 			return true;
 		}
