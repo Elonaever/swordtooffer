@@ -1,0 +1,49 @@
+
+
+//初始答法，递归由一个函数完成，每次都要刷新ans
+class Solution {
+public:
+  vector<int> printListFromTailToHead(ListNode* head){
+    vector<int> ans;
+    if(!head) return ans;
+    if(head->next) ans = printListFromTailToHead(head->next);
+    ans.push_back(head->val);
+    return ans;
+    }
+};
+
+
+//分成两个函数，只需初始化一次ans
+class Solution {
+public:
+ 	void put(vector<int> &a, ListNode *head){
+ 		if(head->next) put(a,head->next);
+ 		a.push_back(head->val); 
+	}
+    vector<int> printListFromTailToHead(ListNode* head) {
+    	vector<int> ans ;
+    	if(!head) return ans;
+		put(ans,head);
+		return ans;
+	}
+};
+
+//堆栈
+class Solution {
+public:
+    vector<int> printListFromTailToHead(ListNode* head) {
+    	vector<int> ans ;
+    	if(!head) return ans;
+    	stack<int> set;
+    	while(head){
+    		set.push(head->val );
+    		head = head->next ;
+		}
+		int j = set.size();
+		for(int i = 0;i<j;++i){
+			ans.push_back(set.top());
+			set.pop() ; 
+		}
+		return ans;
+	}
+};
