@@ -1,0 +1,52 @@
+//初始解法 每次pop后都要清空stack2并往stack1填入
+class Solution
+{
+public:
+    void push(int node) {
+        stack1.push(node);  
+    }
+
+    int pop() {
+    	int j = stack1.size() ;
+        for(int i = 0;i<j;++i){
+        	stack2.push(stack1.top());
+			stack1.pop() ; 
+		}
+		int ret = stack2.top() ;
+		stack2.pop() ;
+		j = stack2.size() ;
+		for(int i = 0;i<j;++i){
+			stack1.push(stack2.top() );
+			stack2.pop() ; 
+		}
+		return ret;
+    }
+
+private:
+    stack<int> stack1;
+    stack<int> stack2;
+};
+
+
+//优化解法，出列数据就可以保持在stack2中，直到stack2为空
+class Solution
+{
+public:
+    void push(int node) {
+        stack1.push(node);  
+    }
+
+    int pop() {
+    	if(stack2.empty()){
+    		while(!stack1.empty() ){
+    			stack2.push(stack1.top());
+				  stack1.pop() ; }}
+    	int ret = stack2.top() ;
+ 		  stack2.pop() ;
+		  return ret;
+    }
+
+private:
+    stack<int> stack1;
+    stack<int> stack2;
+};
