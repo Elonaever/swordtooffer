@@ -1,0 +1,21 @@
+class Solution {
+public:
+	void replaceSpace(char *str,int length) {
+		int j = length-1;
+		for(int i = 0;i < length ; ++i){
+			if(str[i] == ' ')
+				j+=2;
+		}
+		
+		for(int i = length-1;i>=0;--i){
+			if(str[i] != ' '){
+				str[j--] = str[i];      //注意合并
+			}
+			else{
+				str[j--] = '0';         //合并
+				str[j--] = '2';         //合并
+				str[j--] = '%';         //合并
+			}
+		}
+	}
+};
