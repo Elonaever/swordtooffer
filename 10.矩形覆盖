@@ -1,0 +1,22 @@
+我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？
+
+//动态规划
+//从第一个矩形横或竖着放区分
+//n=1一种，n=2两种
+//n>2时，f(n)=f(n-1)+f(n-2) f(n-1)为第一个竖着之后的n-1个的拍法 f(n-2)为第一个横着之后的n-2个的拍法
+
+//斐波那契数列 
+
+class Solution {
+public:
+    int rectCover(int number) {
+    	int p=1,q=2;
+        if(number<=0) return 0;
+        if(number == 1) return p;
+        for(int i =2;i<number;++i){
+            q += p;
+            p = q-p;
+        }
+        return q;
+    }
+};
